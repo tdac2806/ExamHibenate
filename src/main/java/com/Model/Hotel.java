@@ -1,10 +1,15 @@
 package com.Model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,6 +29,10 @@ public class Hotel {
 
    @OneToOne(mappedBy = "Hotel")
    private Directeur Directeur;
+
+   @OneToMany(cascade = CascadeType.ALL)
+   @JoinColumn(name = "Hotel_id")
+   private Set<Chambre> Chambre;
 
    public Hotel() {
       super();
@@ -73,6 +82,14 @@ public class Hotel {
 
    public void setDirecteur(Directeur Directeur) {
       this.Directeur = Directeur;
+   }
+
+   public Set<Chambre> getChambre() {
+      return this.Chambre;
+   }
+
+   public void setChambre(Set<Chambre> Chambre) {
+      this.Chambre = Chambre;
    }
 
 }

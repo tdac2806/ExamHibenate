@@ -9,8 +9,9 @@ import org.hibernate.query.Query;
 
 public class HotelService {
 
+
    public boolean create(Hotel Hotel, Session session) {
-      session.save(Hotel);
+      session.saveOrUpdate(Hotel);
       return true;
    }
 
